@@ -32,6 +32,11 @@ MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     this->SetSize(this->FromDIP(wxSize(800, 600)));
 }
 
+namespace MenuIds
+{
+    const int SomeAction = 100;
+}
+
 void MyFrame::SetupMainMenu()
 {
     wxMenuBar *menuBar = new wxMenuBar();
@@ -52,8 +57,13 @@ void MyFrame::SetupMainMenu()
     editMenu->Append(wxID_COPY);
     editMenu->Append(wxID_PASTE);
 
+    wxMenu *customMenu = new wxMenu();
+
+    customMenu->Append(MenuIds::SomeAction, "Some Action...\tCtrl-A");
+
     menuBar->Append(fileMenu, "File");
     menuBar->Append(editMenu, "Edit");
+    menuBar->Append(customMenu, "Custom");
 
     SetMenuBar(menuBar);
 }
