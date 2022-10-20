@@ -35,6 +35,11 @@ MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
 namespace MenuIds
 {
     const int SomeAction = 100;
+    const int CheckOne = 101;
+    const int CheckTwo = 102;
+    const int RadioOne = 103;
+    const int RadioTwo = 104;
+    const int RadioThree = 105;
 }
 
 void MyFrame::SetupMainMenu()
@@ -60,6 +65,18 @@ void MyFrame::SetupMainMenu()
     wxMenu *customMenu = new wxMenu();
 
     customMenu->Append(MenuIds::SomeAction, "Some &Action...\tCtrl-Alt-A");
+    customMenu->AppendSeparator();
+    customMenu->AppendCheckItem(MenuIds::CheckOne, "Check Item &One\tCtrl-1");
+    customMenu->AppendCheckItem(MenuIds::CheckTwo, "Check Item &Two\tCtrl-2");
+    customMenu->AppendSeparator();
+
+    wxMenu *customMenuOptionsSubmenu = new wxMenu();
+
+    customMenuOptionsSubmenu->AppendRadioItem(MenuIds::RadioOne, "Radio Option One");
+    customMenuOptionsSubmenu->AppendRadioItem(MenuIds::RadioTwo, "Radio Option Two");
+    customMenuOptionsSubmenu->AppendRadioItem(MenuIds::RadioThree, "Radio Option Three");
+
+    customMenu->AppendSubMenu(customMenuOptionsSubmenu, "&Options");
 
     menuBar->Append(fileMenu, "&File");
     menuBar->Append(editMenu, "&Edit");
