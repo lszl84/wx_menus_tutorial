@@ -1,5 +1,7 @@
 #include <wx/wx.h>
 
+#include "drawingcanvas.h"
+
 class MyApp : public wxApp
 {
 public:
@@ -15,6 +17,8 @@ private:
     void SetupMainMenu();
 
     void OnSomeAction(wxCommandEvent &);
+
+    DrawingCanvas *canvas;
 };
 
 wxIMPLEMENT_APP(MyApp);
@@ -29,6 +33,8 @@ MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
     SetupMainMenu();
+
+    canvas = new DrawingCanvas(this, wxID_ANY, wxDefaultPosition, wxDefaultSize);
 
     this->SetMinSize(this->FromDIP(wxSize(200, 200)));
     this->SetSize(this->FromDIP(wxSize(800, 600)));
