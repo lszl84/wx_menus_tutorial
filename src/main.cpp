@@ -72,7 +72,9 @@ void MyFrame::SetupMainMenu()
     wxMenu *customMenuOptionsSubmenu = new wxMenu();
 
     customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option One");
-    customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option Two");
+    customMenuOptionsSubmenu->Check(
+        customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option Two")->GetId(),
+        true);
     customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option Three");
 
     customMenu->AppendSubMenu(customMenuOptionsSubmenu, "&Options");
