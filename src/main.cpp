@@ -34,16 +34,6 @@ MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     this->SetSize(this->FromDIP(wxSize(800, 600)));
 }
 
-namespace MenuIds
-{
-    const int SomeAction = 100;
-    const int CheckOne = 101;
-    const int CheckTwo = 102;
-    const int RadioOne = 103;
-    const int RadioTwo = 104;
-    const int RadioThree = 105;
-}
-
 void MyFrame::OnSomeAction(wxCommandEvent &)
 {
     wxMessageBox("Some Action!");
@@ -71,17 +61,17 @@ void MyFrame::SetupMainMenu()
 
     wxMenu *customMenu = new wxMenu();
 
-    customMenu->Append(MenuIds::SomeAction, "Some &Action...\tCtrl-Alt-A");
+    auto someAction = customMenu->Append(wxID_ANY, "Some &Action...\tCtrl-Alt-A");
     customMenu->AppendSeparator();
-    customMenu->AppendCheckItem(MenuIds::CheckOne, "Check Item &One\tCtrl-1");
-    customMenu->AppendCheckItem(MenuIds::CheckTwo, "Check Item &Two\tCtrl-2");
+    customMenu->AppendCheckItem(wxID_ANY, "Check Item &One\tCtrl-1");
+    customMenu->AppendCheckItem(wxID_ANY, "Check Item &Two\tCtrl-2");
     customMenu->AppendSeparator();
 
     wxMenu *customMenuOptionsSubmenu = new wxMenu();
 
-    customMenuOptionsSubmenu->AppendRadioItem(MenuIds::RadioOne, "Radio Option One");
-    customMenuOptionsSubmenu->AppendRadioItem(MenuIds::RadioTwo, "Radio Option Two");
-    customMenuOptionsSubmenu->AppendRadioItem(MenuIds::RadioThree, "Radio Option Three");
+    customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option One");
+    customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option Two");
+    customMenuOptionsSubmenu->AppendRadioItem(wxID_ANY, "Radio Option Three");
 
     customMenu->AppendSubMenu(customMenuOptionsSubmenu, "&Options");
 
@@ -89,7 +79,7 @@ void MyFrame::SetupMainMenu()
     menuBar->Append(editMenu, "&Edit");
     menuBar->Append(customMenu, "&Custom");
 
-    this->Bind(wxEVT_MENU, &MyFrame::OnSomeAction, this, MenuIds::SomeAction);
+    this->Bind(wxEVT_MENU, &MyFrame::OnSomeAction, this, someAction->GetId());
 
     SetMenuBar(menuBar);
 }
