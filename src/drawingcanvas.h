@@ -18,4 +18,8 @@ private:
 
     bool isDrawing{};
     std::vector<std::vector<wxPoint2DDouble>> squiggles;
+
+    wxMenu contextMenu;
+    void BuildContextMenu();
+    void OnContextMenuEvent(wxContextMenuEvent &);
 };

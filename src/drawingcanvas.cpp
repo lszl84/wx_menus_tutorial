@@ -12,6 +12,10 @@ DrawingCanvas::DrawingCanvas(wxWindow *parent, wxWindowID id, const wxPoint &pos
     this->Bind(wxEVT_MOTION, &DrawingCanvas::OnMouseMove, this);
     this->Bind(wxEVT_LEFT_UP, &DrawingCanvas::OnMouseUp, this);
     this->Bind(wxEVT_LEAVE_WINDOW, &DrawingCanvas::OnMouseLeave, this);
+
+    BuildContextMenu();
+
+    this->Bind(wxEVT_CONTEXT_MENU, &DrawingCanvas::OnContextMenuEvent, this);
 }
 
 void DrawingCanvas::OnPaint(wxPaintEvent &)
@@ -66,4 +70,27 @@ void DrawingCanvas::OnMouseUp(wxMouseEvent &)
 void DrawingCanvas::OnMouseLeave(wxMouseEvent &)
 {
     isDrawing = false;
+}
+
+void DrawingCanvas::BuildContextMenu()
+{
+    auto clear = contextMenu.Append(wxID_ANY, "&Clear");
+    contextMenu.Append(wxID_ANY, "Save &As...");
+
+    this->Bind(
+        wxEVT_MENU,
+        [this](wxCommandEvent &)
+        {
+            this->squiggles.clear();
+            this->Refresh();
+        },
+        clear->GetId());
+}
+
+void DrawingCanvas::OnContextMenuEvent(wxContextMenuEvent &e)
+{
+    auto clientPos = e.GetPosition() == wxDefaultPosition
+                         ? wxPoint(this->GetSize().GetWidth() / 2, this->GetSize().GetHeight() / 2)
+                         : this->ScreenToClient(e.GetPosition());
+    PopupMenu(&this->contextMenu, clientPos);
 }
