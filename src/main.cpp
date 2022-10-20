@@ -13,6 +13,8 @@ public:
 
 private:
     void SetupMainMenu();
+
+    void OnSomeAction(wxCommandEvent &);
 };
 
 wxIMPLEMENT_APP(MyApp);
@@ -40,6 +42,11 @@ namespace MenuIds
     const int RadioOne = 103;
     const int RadioTwo = 104;
     const int RadioThree = 105;
+}
+
+void MyFrame::OnSomeAction(wxCommandEvent &)
+{
+    wxMessageBox("Some Action!");
 }
 
 void MyFrame::SetupMainMenu()
@@ -81,6 +88,8 @@ void MyFrame::SetupMainMenu()
     menuBar->Append(fileMenu, "&File");
     menuBar->Append(editMenu, "&Edit");
     menuBar->Append(customMenu, "&Custom");
+
+    this->Bind(wxEVT_MENU, &MyFrame::OnSomeAction, this, MenuIds::SomeAction);
 
     SetMenuBar(menuBar);
 }
