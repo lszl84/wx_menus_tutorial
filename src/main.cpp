@@ -61,7 +61,9 @@ void MyFrame::SetupMainMenu()
 
     wxMenu *customMenu = new wxMenu();
 
-    auto someAction = customMenu->Append(wxID_ANY, "Some &Action...\tCtrl-Alt-A");
+    this->Bind(wxEVT_MENU, &MyFrame::OnSomeAction, this,
+               customMenu->Append(wxID_ANY, "Some &Action...\tCtrl-Alt-A")->GetId());
+
     customMenu->AppendSeparator();
     customMenu->AppendCheckItem(wxID_ANY, "Check Item &One\tCtrl-1");
     customMenu->AppendCheckItem(wxID_ANY, "Check Item &Two\tCtrl-2");
@@ -78,8 +80,6 @@ void MyFrame::SetupMainMenu()
     menuBar->Append(fileMenu, "&File");
     menuBar->Append(editMenu, "&Edit");
     menuBar->Append(customMenu, "&Custom");
-
-    this->Bind(wxEVT_MENU, &MyFrame::OnSomeAction, this, someAction->GetId());
 
     SetMenuBar(menuBar);
 }
