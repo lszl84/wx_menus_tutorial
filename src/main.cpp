@@ -59,11 +59,11 @@ void MyFrame::SetupMainMenu()
 
     wxMenu *customMenu = new wxMenu();
 
-    customMenu->Append(MenuIds::SomeAction, "Some Action...\tCtrl-Alt-A");
+    customMenu->Append(MenuIds::SomeAction, "Some &Action...\tCtrl-Alt-A");
 
-    menuBar->Append(fileMenu, "File");
-    menuBar->Append(editMenu, "Edit");
-    menuBar->Append(customMenu, "Custom");
+    menuBar->Append(fileMenu, "&File");
+    menuBar->Append(editMenu, "&Edit");
+    menuBar->Append(customMenu, "&Custom");
 
     SetMenuBar(menuBar);
 }
