@@ -1,5 +1,7 @@
 # wx_menus_tutorial
 
-Menus Tutorial for wxWidgets.
+Menus [tutorial](https://www.youtube.com/watch?v=Spt5VF1aSps) for wxWidgets.
 
-See the full video playlist: https://www.youtube.com/playlist?list=PL0qQTroQZs5vVmTuBew-nTx9DIu6rRl2c
+---
+Check out the blog for more! [www.justdevtutorials.com](https://www.justdevtutorials.com)
+---
